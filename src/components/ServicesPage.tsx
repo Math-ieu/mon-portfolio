@@ -24,12 +24,12 @@ interface Category {
 }
 
 export default function ServicesPage() {
-  const [activeCategory, setActiveCategory] = useState<'cloud' | 'web' | 'ai' | 'mobile'>('cloud');
+  const [activeCategory, setActiveCategory] = useState<'cloud' | 'web' | 'ai' | 'mobile'>('web');
   const navigate = useNavigate();
 
   const categories: Category[] = [
-    { id: 'cloud', label: 'Cloud & DevSecOps' },
     { id: 'web', label: 'Développement Web' },
+    { id: 'cloud', label: 'Cloud & DevSecOps' },
     { id: 'mobile', label: 'Développement Mobile' },
     { id: 'ai', label: 'Intelligence Artificielle' }
   ];
