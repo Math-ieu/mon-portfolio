@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Theme and Color Scheme -->
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Mathieu AKAKPO-DJAKPATA | Ingénieur Cloud & DevSecOps</title>
+    <meta name="description" content="Portfolio professionnel de Mathieu AKAKPO-DJAKPATA, spécialisé en automatisation Cloud, DevOps, DevSecOps et Cybersécurité. Découvrez mon parcours, mes compétences et mes projets open-source." />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/mathieu.png" />
+    
+    <!-- Font Preloads for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
