@@ -137,6 +137,7 @@
 
 @media (max-width: 768px) {
   .skills-subtitle {
+    margin-top: 10px;
     margin-bottom: 30px;
   }
 }
