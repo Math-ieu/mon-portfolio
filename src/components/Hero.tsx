@@ -162,7 +162,7 @@ export default function Hero() {
               </div>
               <div className="stat-item glass">
                 <span className="stat-number">5+</span>
-                <span className="stat-number-label">Certifs</span>
+                <span className="stat-label">Certifs</span>
               </div>
             </div>
           </div>

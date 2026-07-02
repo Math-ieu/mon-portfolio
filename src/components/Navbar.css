@@ -231,6 +231,9 @@
 }
 
 @media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1.15rem;
+  }
   .cv-button span {
     display: none;
   }

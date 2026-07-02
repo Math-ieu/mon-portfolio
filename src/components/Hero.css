@@ -635,15 +635,20 @@
   }
 
   .hero-stats {
-    gap: 10px;
+    gap: 8px;
+    width: 100%;
   }
 
   .stat-item {
-    padding: 12px 8px;
+    padding: 10px 6px;
   }
 
   .stat-number {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
   }
 
   .hero-particles {
@@ -652,6 +657,39 @@
 
   .scroll-indicator {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .typing-container {
+    font-size: 0.88rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+
+  .photo-frame {
+    width: 180px;
+    height: 180px;
+  }
+
+  .tech-badge {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+  }
+
+  .tech-badge-2 {
+    left: -10px;
+    bottom: 50px;
+  }
+
+  .tech-badge-3 {
+    right: -5px;
   }
 }
 
