@@ -41,38 +41,23 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {/* Art Deco Fixed Background Pattern */}
+      {/* Noise and Scanline overlays for mechanical/CRT feel */}
+      <div className="noise-overlay" />
+      <div className="crt-scanlines" />
+
+      {/* Brutalist Blueprint/Terminal Grid Pattern */}
       <div className="art-deco-bg">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <g id="deco-scale">
-              {/* Outer Arch */}
-              <path d="M 0,50 A 50,50 0 0,1 100,50" stroke="var(--deco-color)" strokeWidth="1.5" fill="none" />
-              {/* Inner Arches */}
-              <path d="M 10,50 A 40,40 0 0,1 90,50" stroke="var(--deco-color)" strokeWidth="1" fill="none" />
-              <path d="M 20,50 A 30,30 0 0,1 80,50" stroke="var(--deco-color)" strokeWidth="1" fill="none" />
-              {/* Rays inside */}
-              <path d="M 50,50 L 50,10" stroke="var(--deco-color)" strokeWidth="2" />
-              <path d="M 50,50 L 28,19" stroke="var(--deco-color)" strokeWidth="1.5" />
-              <path d="M 50,50 L 72,19" stroke="var(--deco-color)" strokeWidth="1.5" />
-              <path d="M 50,50 L 15,32" stroke="var(--deco-color)" strokeWidth="1.5" />
-              <path d="M 50,50 L 85,32" stroke="var(--deco-color)" strokeWidth="1.5" />
-              {/* Rays leaves/droplets */}
-              <circle cx="50" cy="8" r="3" fill="var(--deco-color)" />
-              <circle cx="28" cy="17" r="2.5" fill="var(--deco-color)" />
-              <circle cx="72" cy="17" r="2.5" fill="var(--deco-color)" />
-              <circle cx="15" cy="30" r="2" fill="var(--deco-color)" />
-              <circle cx="85" cy="30" r="2" fill="var(--deco-color)" />
-            </g>
-            <pattern id="art-deco-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
-              <use href="#deco-scale" x="0" y="0" />
-              <use href="#deco-scale" x="50" y="50" />
-              <use href="#deco-scale" x="-50" y="50" />
-              <use href="#deco-scale" x="50" y="-50" />
-              <use href="#deco-scale" x="-50" y="-50" />
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--border-color)" strokeWidth="0.5" opacity="0.03" />
+            </pattern>
+            <pattern id="grid-large" width="200" height="200" patternUnits="userSpaceOnUse">
+              <rect width="200" height="200" fill="url(#grid)" />
+              <path d="M 200 0 L 0 0 0 200" fill="none" stroke="var(--border-color)" strokeWidth="1.5" opacity="0.07" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#art-deco-pattern)" />
+          <rect width="100%" height="100%" fill="url(#grid-large)" />
         </svg>
       </div>
 
@@ -108,9 +93,9 @@ export default function App() {
       </Routes>
 
       {/* Professional Footer */}
-      <footer className="footer">
-        <p>
-          &copy; {new Date().getFullYear()} Mathieu AKAKPO-DJAKPATA. Tous droits réservés.
+      <footer className="footer" style={{ borderTop: 'var(--border-thin)', padding: '30px 20px', textAlign: 'center', background: 'var(--bg-secondary)', position: 'relative', zIndex: 10 }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>
+          &copy; {new Date().getFullYear()} MATHIEU AKAKPO-DJAKPATA // SYSTEM_REV: 3.5.0 // ALL RIGHTS RESERVED.
         </p>
       </footer>
 

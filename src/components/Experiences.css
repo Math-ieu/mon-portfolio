@@ -14,8 +14,7 @@
   left: 20px;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-purple) 100%);
-  border-radius: 1px;
+  background: var(--border-color);
 }
 
 .experience-item-wrapper {
@@ -27,26 +26,24 @@
 /* Timeline Circle Node */
 .timeline-node {
   position: absolute;
-  left: 10px;
+  left: 11px;
   top: 30px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   background: var(--bg-primary);
-  border: 2px solid var(--color-accent);
+  border: var(--border-thick);
+  border-color: var(--color-accent);
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--color-accent);
   z-index: 2;
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
   transition: var(--transition-smooth);
 }
 
 .experience-item-wrapper:hover .timeline-node {
   background: var(--color-accent);
   color: var(--bg-primary);
-  box-shadow: 0 0 15px var(--color-accent);
   transform: scale(1.1);
 }
 
@@ -62,22 +59,25 @@
   flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 20px;
-  border-bottom: 1px solid var(--border-glass);
+  border-bottom: var(--border-thin);
   padding-bottom: 15px;
 }
 
 .experience-role-group h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 900;
   color: var(--text-primary);
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .company-tag {
   display: inline-block;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--color-accent);
+  text-transform: uppercase;
 }
 
 .experience-meta-info {
@@ -85,14 +85,15 @@
   flex-direction: column;
   gap: 6px;
   align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
 .exp-meta-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .experience-tasks {
@@ -104,7 +105,7 @@
 }
 
 .experience-tasks li {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
   position: relative;
@@ -112,37 +113,41 @@
 }
 
 .experience-tasks li::before {
-  content: '▪';
+  content: '>>>';
   position: absolute;
   left: 0;
   color: var(--color-accent);
-  font-size: 0.8rem;
-  top: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  top: 1px;
 }
 
 .experience-tech-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .tech-pill {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
   color: var(--text-secondary);
-  background: var(--bg-badge);
+  background: var(--bg-secondary);
+  border: var(--border-thin);
+  text-transform: uppercase;
 }
 
 .tech-pill:hover {
-  color: var(--text-primary);
-  border-color: var(--color-accent-glow);
+  color: var(--bg-primary);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* Medium viewports overrides */
 @media (min-width: 900px) {
-  /* Let's keep it clean on left timeline side. Centering can be complex, left line is cleaner and easier to read! */
 }
 
 @media (max-width: 768px) {
@@ -165,6 +170,7 @@
   }
   
   .timeline-node {
-    left: 5px;
+    left: 6px;
   }
 }
+

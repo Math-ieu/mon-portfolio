@@ -66,9 +66,9 @@ export default function About() {
           <h3>Formation Académique</h3>
           <div className="education-timeline">
             {education.map((item, index) => (
-              <div key={index} className="education-item glass">
-                <div className="education-marker">
-                  <GraduationCap size={16} />
+              <div key={index} className="education-item">
+                <div className="education-marker" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                  {index + 1}
                 </div>
                 <div className="education-header">
                   <h4>{item.degree}</h4>

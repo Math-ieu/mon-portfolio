@@ -55,21 +55,6 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero-section">
-      {/* Background glow effects */}
-      <div className="hero-glow pink-glow"></div>
-      <div className="hero-glow cyan-glow"></div>
-      <div className="hero-glow indigo-glow"></div>
-
-      {/* Floating particles */}
-      <div className="hero-particles">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-      </div>
-
       {/* Decorative grid pattern */}
       <div className="hero-grid-pattern"></div>
 
@@ -77,51 +62,51 @@ export default function Hero() {
         <div className="hero-grid">
           {/* Left Side: Copy */}
           <div className="hero-content">
-            <div className="hero-badge glass hero-fade-in">
+            <div className="hero-badge hero-fade-in">
               <span className="badge-dot"></span>
-              <span>Disponible pour de nouveaux projets</span>
+              <span>Available for deployment</span>
             </div>
 
             <h1 className="hero-title hero-fade-in">
-              Salut, je suis <br />
+              SALUT, JE SUIS <br />
               <span className="gradient-text">Mathieu</span>
             </h1>
 
             <div className="typing-container hero-fade-in">
-              <Server size={18} className="typing-icon" />
+              <Server size={16} className="typing-icon" />
               <span className="typing-text">{currentText}</span>
-              <span className="typing-cursor">|</span>
+              <span className="typing-cursor"></span>
             </div>
 
             <p className="hero-description hero-fade-in">
-              Je conçois et sécurise des infrastructures Cloud, automatise des pipelines CI/CD et développe des applications Web & Mobile performantes.
+              Je conçois et sécurise des infrastructures Cloud, automatise des pipelines CI/CD et développe des applications Web & Mobile performantes. [SEC_DEV_OPS]
             </p>
 
             <div className="hero-cta-group hero-fade-in">
               <a href="#projects" className="cta-primary">
-                <span>Voir mes projets</span>
-                <ArrowRight size={16} />
+                <span>Mes projets</span>
+                <ArrowRight size={14} />
               </a>
-              <Link to="/services" className="cta-secondary glass">
-                <Briefcase size={16} />
+              <Link to="/services" className="cta-secondary">
+                <Briefcase size={14} />
                 <span>Mes Services</span>
               </Link>
-              <a href="/cv-mathieu.pdf" className="cta-secondary glass" target="_blank" rel="noopener noreferrer">
-                <Download size={16} />
-                <span>Télécharger CV</span>
+              <a href="/cv-mathieu.pdf" className="cta-secondary" target="_blank" rel="noopener noreferrer">
+                <Download size={14} />
+                <span>CV.pdf</span>
               </a>
             </div>
 
             {/* Social Links */}
             <div className="hero-socials hero-fade-in">
-              <a href="https://github.com/Math-ieu" target="_blank" rel="noopener noreferrer" className="social-link glass" aria-label="GitHub">
-                <GithubIcon size={18} />
+              <a href="https://github.com/Math-ieu" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
+                <GithubIcon size={16} />
               </a>
-              <a href="https://linkedin.com/in/mathieu-akakpo-djakpata" target="_blank" rel="noopener noreferrer" className="social-link glass" aria-label="LinkedIn">
-                <LinkedinIcon size={18} />
+              <a href="https://linkedin.com/in/mathieu-akakpo-djakpata" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
+                <LinkedinIcon size={16} />
               </a>
-              <a href="#contact" className="social-link glass" aria-label="Email">
-                <Mail size={18} />
+              <a href="#contact" className="social-link" aria-label="Email">
+                <Mail size={16} />
               </a>
             </div>
           </div>
@@ -129,40 +114,40 @@ export default function Hero() {
           {/* Right Side: Photo & Badges */}
           <div className="hero-visual hero-visual-fade">
             <div className="photo-frame">
-              <div className="photo-frame-border"></div>
+              <div style={{ position: 'absolute', top: '-15px', left: '0', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)' }}>
+                SYS_REF_ID: 9812-AKD
+              </div>
               <img
                 src="/mathieu.png"
                 alt="Mathieu AKAKPO-DJAKPATA"
                 className="profile-photo"
               />
               {/* Floating tech badges around photo */}
-              <div className="tech-badge tech-badge-1 glass">
-                <Shield size={16} />
-                <span>DevSecOps</span>
+              <div className="tech-badge tech-badge-1">
+                <Shield size={12} />
+                <span>[DevSecOps]</span>
               </div>
-              <div className="tech-badge tech-badge-2 glass">
-                <span>☁️</span>
-                <span>AWS & Azure</span>
+              <div className="tech-badge tech-badge-2">
+                <span>☁️ AWS / AZURE</span>
               </div>
-              <div className="tech-badge tech-badge-3 glass">
-                <span>⚡</span>
-                <span>CI/CD</span>
+              <div className="tech-badge tech-badge-3">
+                <span>⚡ CI_CD_PIPELINE</span>
               </div>
             </div>
 
             {/* Stats row */}
             <div className="hero-stats">
-              <div className="stat-item glass">
+              <div className="stat-item">
                 <span className="stat-number">20+</span>
-                <span className="stat-label">Projets</span>
+                <span className="stat-label">PROJETS</span>
               </div>
-              <div className="stat-item glass">
-                <span className="stat-number">3+</span>
-                <span className="stat-label">Ans d'XP</span>
+              <div className="stat-item">
+                <span className="stat-number">3+ Ans</span>
+                <span className="stat-label">EXP</span>
               </div>
-              <div className="stat-item glass">
+              <div className="stat-item">
                 <span className="stat-number">5+</span>
-                <span className="stat-label">Certifs</span>
+                <span className="stat-label">CERTIFS</span>
               </div>
             </div>
           </div>
@@ -171,8 +156,8 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="scroll-indicator">
-        <span>Défiler</span>
-        <ChevronDown size={18} className="scroll-arrow" />
+        <span>SYS_SCROLL</span>
+        <ChevronDown size={14} className="scroll-arrow" />
       </div>
     </section>
   );

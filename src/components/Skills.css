@@ -1,6 +1,6 @@
 .skills-subtitle {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   margin-top: -30px;
   margin-bottom: 50px;
   max-width: 700px;
@@ -32,14 +32,15 @@
 }
 
 .bento-header h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 900;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .bento-desc {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   line-height: 1.4;
 }
@@ -49,19 +50,19 @@
   width: 42px;
   height: 42px;
   padding: 8px;
-  border-radius: 10px;
-  border: 1px solid var(--border-glass);
+  border: var(--border-thick);
   flex-shrink: 0;
+  background: var(--bg-secondary) !important;
 }
 
-.skill-icon.cloud { background: rgba(6, 182, 212, 0.1); color: var(--color-accent); border-color: rgba(6, 182, 212, 0.2); }
-.skill-icon.cpu { background: rgba(129, 140, 248, 0.1); color: var(--color-secondary); border-color: rgba(129, 140, 248, 0.2); }
-.skill-icon.iac { background: rgba(167, 139, 250, 0.1); color: var(--color-purple); border-color: rgba(167, 139, 250, 0.2); }
-.skill-icon.devops { background: rgba(16, 185, 129, 0.1); color: var(--color-success); border-color: rgba(16, 185, 129, 0.2); }
-.skill-icon.gitops { background: rgba(244, 63, 94, 0.1); color: var(--color-danger); border-color: rgba(244, 63, 94, 0.2); }
-.skill-icon.scripting { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+.skill-icon.cloud { color: var(--color-accent); border-color: var(--color-accent); }
+.skill-icon.cpu { color: var(--color-secondary); border-color: var(--color-secondary); }
+.skill-icon.iac { color: var(--text-primary); border-color: var(--border-color); }
+.skill-icon.devops { color: var(--color-accent); border-color: var(--color-accent); }
+.skill-icon.gitops { color: var(--color-secondary); border-color: var(--color-secondary); }
+.skill-icon.scripting { color: var(--text-primary); border-color: var(--border-color); }
 
-/* Skill Bars */
+/* Skill Bars - Dotted Matrix/Segmented Style */
 .skill-bars {
   display: flex;
   flex-direction: column;
@@ -78,8 +79,9 @@
 .skill-info {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .skill-name {
@@ -92,37 +94,55 @@
 
 .skill-bar-track {
   width: 100%;
-  height: 6px;
-  background: var(--bg-tertiary);
-  border-radius: 3px;
-  overflow: hidden;
+  height: 8px;
+  background: var(--bg-secondary);
+  border: var(--border-thin);
 }
 
 .skill-bar-fill {
   height: 100%;
-  border-radius: 3px;
-  background: var(--grad-primary);
-  transform-origin: left;
+  /* Dotted/segmented ticks to look like terminal diagnostics */
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-accent) 6px,
+    transparent 6px,
+    transparent 8px
+  );
+}
+
+.bento-item:hover .skill-bar-fill {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-secondary),
+    var(--color-secondary) 6px,
+    transparent 6px,
+    transparent 8px
+  );
 }
 
 /* Tags */
 .bento-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .bento-tag {
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
   color: var(--text-secondary);
+  border: var(--border-thin);
+  background: var(--bg-secondary);
+  text-transform: uppercase;
 }
 
 .bento-tag:hover {
-  color: var(--text-primary);
-  border-color: var(--color-accent-glow);
+  color: var(--bg-primary);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* Responsive grid overrides */
@@ -141,3 +161,4 @@
     margin-bottom: 30px;
   }
 }
+

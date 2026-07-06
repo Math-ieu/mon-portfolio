@@ -184,7 +184,7 @@ export default function Projects() {
           <select
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value)}
-            className="language-select glass"
+            className="language-select"
             aria-label="Filter by primary language"
           >
             <option value="all">Langages (Tous)</option>
@@ -284,7 +284,7 @@ export default function Projects() {
               {project.topics.length > 0 && (
                 <div className="project-topics">
                   {project.topics.slice(0, 3).map((topic, tIdx) => (
-                    <span key={tIdx} className="topic-tag glass">
+                    <span key={tIdx} className="topic-tag">
                       #{topic}
                     </span>
                   ))}
@@ -297,7 +297,7 @@ export default function Projects() {
 
       {/* Empty State */}
       {filteredProjects.length === 0 && (
-        <div className="projects-empty glass">
+        <div className="projects-empty">
           <FolderGit2 size={48} className="empty-icon" />
           <h3>Aucun projet trouvé</h3>
           <p>Essayez de modifier votre recherche ou vos critères de filtrage.</p>
@@ -307,7 +307,7 @@ export default function Projects() {
       {/* Load More Button */}
       {filteredProjects.length > visibleCount && (
         <div className="load-more-container">
-          <button onClick={loadMore} className="cta-secondary glass">
+          <button onClick={loadMore} className="cta-secondary">
             Charger d'autres projets
           </button>
         </div>

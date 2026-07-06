@@ -117,7 +117,7 @@ export default function Certifications() {
       <h2 className="section-title">Certifications Professionnelles</h2>
 
       {/* Category Tabs */}
-      <div className="certs-toolbar glass">
+      <div className="certs-toolbar">
         <div className="category-tabs">
           <button 
             className={`tab-btn ${selectedCategory === 'all' ? 'active' : ''}`}
@@ -170,7 +170,7 @@ export default function Certifications() {
                   />
                 </div>
               ) : (
-                <div className="cert-placeholder glass">
+                <div className="cert-placeholder">
                   <Award size={48} className="cert-placeholder-icon" />
                 </div>
               )}
@@ -189,7 +189,7 @@ export default function Certifications() {
               
               <div className="cert-skills">
                 {cert.skills.map((skill, sIdx) => (
-                  <span key={sIdx} className="cert-skill-tag glass">
+                  <span key={sIdx} className="cert-skill-tag">
                     {skill}
                   </span>
                 ))}
@@ -200,7 +200,7 @@ export default function Certifications() {
                   href={cert.verificationUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="verify-btn glass"
+                  className="verify-btn"
                   onClick={(e) => e.stopPropagation()} // prevent opening modal when checking verify URL
                 >
                   <span>Vérifier la certification</span>
@@ -215,7 +215,7 @@ export default function Certifications() {
       {/* Pop-up Modal for Certificate Zoom */}
       {modalImage && (
         <div className="cert-modal-overlay" onClick={closeModal}>
-          <div className="cert-modal-content glass" onClick={(e) => e.stopPropagation()}>
+          <div className="cert-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="cert-modal-header">
               <h3>{modalTitle}</h3>
               <button className="cert-modal-close" onClick={closeModal} aria-label="Fermer le pop-up">

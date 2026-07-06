@@ -141,7 +141,7 @@ export default function Contact() {
           </p>
 
           <div className="info-cards-list">
-            <a href="mailto:mathieuakakpodjakpata@gmail.com" className="info-card glass">
+            <a href="mailto:mathieuakakpodjakpata@gmail.com" className="info-card">
               <Mail className="info-icon" />
               <div>
                 <h4>Email</h4>
@@ -149,7 +149,7 @@ export default function Contact() {
               </div>
             </a>
 
-            <a href="tel:+212669372603" className="info-card glass">
+            <a href="tel:+212669372603" className="info-card">
               <Phone className="info-icon" />
               <div>
                 <h4>Téléphone</h4>
@@ -157,7 +157,7 @@ export default function Contact() {
               </div>
             </a>
 
-            <div className="info-card glass">
+            <div className="info-card">
               <MapPin className="info-icon" />
               <div>
                 <h4>Localisation</h4>
@@ -166,7 +166,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="contact-socials-card glass">
+          <div className="contact-socials-card">
             <h4>Mes réseaux</h4>
             <div className="contact-socials-links">
               <a 
@@ -196,13 +196,13 @@ export default function Contact() {
           <h3>Envoyer un Message</h3>
 
           {status === 'success' ? (
-            <div className="form-status success glass">
+            <div className="form-status success">
               <CheckCircle size={36} className="status-icon-check" />
               <div>
                 <h4>Message envoyé !</h4>
                 <p>Merci pour votre intérêt. Je vous répondrai dans les plus brefs délais.</p>
               </div>
-              <button onClick={() => setStatus('idle')} className="cta-secondary reset-btn glass">
+              <button onClick={() => setStatus('idle')} className="cta-secondary reset-btn">
                 Envoyer un autre message
               </button>
             </div>
@@ -210,7 +210,7 @@ export default function Contact() {
             <form ref={formRef} onSubmit={handleSubmit} className="contact-form" noValidate>
               
               {status === 'error' && (
-                <div className="form-status error glass">
+                <div className="form-status error">
                   <AlertTriangle size={20} className="status-icon-error" />
                   <span>Une erreur s'est produite lors de l'envoi. Veuillez réessayer.</span>
                 </div>
@@ -226,7 +226,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input glass ${touched.name && errors.name ? 'invalid' : ''}`}
+                  className={`form-input ${touched.name && errors.name ? 'invalid' : ''}`}
                   disabled={status === 'loading'}
                   placeholder="Ex: Jean Dupont"
                   required
@@ -246,7 +246,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input glass ${touched.email && errors.email ? 'invalid' : ''}`}
+                  className={`form-input ${touched.email && errors.email ? 'invalid' : ''}`}
                   disabled={status === 'loading'}
                   placeholder="Ex: jean.dupont@company.com"
                   required
@@ -266,7 +266,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input glass ${touched.subject && errors.subject ? 'invalid' : ''}`}
+                  className={`form-input ${touched.subject && errors.subject ? 'invalid' : ''}`}
                   disabled={status === 'loading'}
                   placeholder="Ex: Offre de stage Ingénieur Cloud"
                   required
@@ -286,7 +286,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input form-textarea glass ${touched.message && errors.message ? 'invalid' : ''}`}
+                  className={`form-input form-textarea ${touched.message && errors.message ? 'invalid' : ''}`}
                   disabled={status === 'loading'}
                   placeholder="Détaillez votre demande ici..."
                   required

@@ -64,7 +64,7 @@ export default function Experiences() {
         {experiences.map((exp, idx) => (
           <div key={idx} className="experience-item-wrapper">
             {/* Center Timeline Nodes on larger viewports */}
-            <div className="timeline-node glass">
+            <div className="timeline-node">
               <Briefcase size={16} />
             </div>
 
@@ -94,7 +94,7 @@ export default function Experiences() {
 
               <div className="experience-tech-tags">
                 {exp.techs.map((tech, techIdx) => (
-                  <span key={techIdx} className="tech-pill glass">
+                  <span key={techIdx} className="tech-pill">
                     {tech}
                   </span>
                 ))}

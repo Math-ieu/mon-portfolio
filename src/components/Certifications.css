@@ -3,10 +3,9 @@
   justify-content: center;
   align-items: center;
   padding: 15px 25px;
-  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: var(--border-thick);
   margin-bottom: 40px;
-  border: 1px solid var(--border-glass);
-  background: var(--bg-glass);
 }
 
 .certs-grid {
@@ -24,7 +23,7 @@
 
 .cert-visual {
   flex-shrink: 0;
-  width: 120px;
+  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,40 +36,46 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid var(--border-glass);
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-bounce);
+  background: var(--bg-secondary);
+  border: var(--border-thin);
+  transition: var(--transition-smooth);
 }
 
 .cert-badge-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: grayscale(0.5);
+  transition: filter 0.2s ease;
+}
+
+.cert-card:hover .cert-badge-img {
+  filter: grayscale(0);
 }
 
 .cert-card:hover .cert-badge-wrapper {
-  transform: scale(1.1) rotate(5deg);
+  transform: translate(-3px, -3px);
   border-color: var(--color-accent);
-  box-shadow: 0 0 15px var(--color-accent-glow);
+  box-shadow: 3px 3px 0px var(--color-accent);
 }
 
 .cert-placeholder {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-muted);
-  border: 1px solid var(--border-glass);
+  border: var(--border-thick);
+  background: var(--bg-secondary);
+  transition: var(--transition-smooth);
 }
 
 .cert-card:hover .cert-placeholder {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  box-shadow: 0 0 15px var(--color-accent-glow);
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0px var(--color-accent);
 }
 
 .cert-content {
@@ -87,32 +92,37 @@
 }
 
 .cert-header h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 900;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .issuer-tag {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-secondary);
-  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-top: 4px;
+  text-transform: uppercase;
 }
 
 .cert-type-icon {
   width: 32px;
   height: 32px;
   padding: 6px;
-  border-radius: 6px;
+  border: var(--border-thin);
   flex-shrink: 0;
+  background: var(--bg-secondary) !important;
 }
 
-.cert-type-icon.backend { background: rgba(6, 182, 212, 0.1); color: var(--color-accent); }
-.cert-type-icon.security { background: rgba(16, 185, 129, 0.1); color: var(--color-success); }
-.cert-type-icon.datascience { background: rgba(129, 140, 248, 0.1); color: var(--color-secondary); }
-.cert-type-icon.security-google { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.cert-type-icon.backend { color: var(--color-accent); border-color: var(--color-accent); }
+.cert-type-icon.security { color: var(--color-secondary); border-color: var(--color-secondary); }
+.cert-type-icon.datascience { color: var(--text-primary); border-color: var(--border-color); }
+.cert-type-icon.security-google { color: var(--color-accent); border-color: var(--color-accent); }
 
 .cert-desc {
   font-size: 0.85rem;
@@ -127,15 +137,18 @@
 }
 
 .cert-skill-tag {
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  color: var(--text-secondary);
+  border: var(--border-thin);
+  background: var(--bg-secondary);
+  text-transform: uppercase;
 }
 
 .cert-card:hover .cert-skill-tag {
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .cert-verify-link {
@@ -147,16 +160,23 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: var(--border-thick);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0px var(--text-primary);
+  transition: var(--transition-smooth);
 }
 
 .verify-btn:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent-glow);
-  box-shadow: 0 0 8px var(--color-accent-glow);
+  color: var(--bg-primary);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--text-primary);
 }
 
 @media (max-width: 992px) {
@@ -192,64 +212,73 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(3, 7, 18, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(10, 10, 10, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2000;
   padding: 20px;
-  animation: modalFadeIn 0.25s ease-out;
+  animation: modalFadeIn 0.15s ease-out;
 }
 
 .cert-modal-content {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(6, 182, 212, 0.15);
-  max-width: 900px;
+  border: var(--border-thick);
+  background: var(--bg-primary);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
   width: 100%;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: modalScaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: modalScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cert-modal-header {
-  padding: 15px 25px;
-  border-bottom: 1px solid var(--border-glass);
+  padding: 12px 20px;
+  border-bottom: var(--border-thick);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-accent),
+    var(--color-accent) 8px,
+    var(--bg-secondary) 8px,
+    var(--bg-secondary) 16px
+  );
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .cert-modal-header h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--bg-primary);
   margin: 0;
+  background: var(--text-primary);
+  padding: 4px 10px;
+  border: var(--border-thin);
 }
 
 .cert-modal-close {
-  background: var(--bg-badge);
-  border: 1px solid var(--border-glass);
-  color: var(--text-secondary);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  background: var(--bg-primary);
+  border: var(--border-thick);
+  color: var(--text-primary);
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-family: var(--font-mono);
+  font-weight: 800;
   transition: var(--transition-smooth);
 }
 
 .cert-modal-close:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent-glow);
-  background: rgba(6, 182, 212, 0.1);
-  transform: rotate(90deg);
+  color: var(--bg-primary);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .cert-modal-body {
@@ -258,24 +287,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(8, 13, 26, 0.5);
+  background: var(--bg-secondary);
 }
 
 .cert-modal-img {
   max-width: 100%;
   max-height: 60vh;
   object-fit: contain;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: var(--border-thick);
 }
 
 .cert-modal-footer {
-  padding: 12px 25px;
-  border-top: 1px solid var(--border-glass);
-  font-size: 0.8rem;
+  padding: 12px 20px;
+  border-top: var(--border-thick);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--text-muted);
   text-align: center;
+  background: var(--bg-primary);
 }
 
 @keyframes modalFadeIn {
@@ -284,7 +315,8 @@
 }
 
 @keyframes modalScaleIn {
-  from { transform: scale(0.95); opacity: 0; }
+  from { transform: scale(0.97); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
 

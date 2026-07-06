@@ -247,47 +247,25 @@ export default function ServicesPage() {
 
   return (
     <div className="services-page" style={{ position: 'relative' }}>
-      <div className="page-glow pink-glow-page"></div>
-      <div className="page-glow cyan-glow-page"></div>
-
-      {/* Art Deco Background Pattern */}
+      {/* Brutalist Blueprint/Terminal Grid Pattern */}
       <div className="art-deco-bg">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <g id="deco-scale-services">
-              {/* Outer Arch */}
-              <path d="M 0,50 A 50,50 0 0,1 100,50" stroke="var(--deco-color)" strokeWidth="1.5" fill="none" />
-              {/* Inner Arches */}
-              <path d="M 10,50 A 40,40 0 0,1 90,50" stroke="var(--deco-color)" strokeWidth="1" fill="none" />
-              <path d="M 20,50 A 30,30 0 0,1 80,50" stroke="var(--deco-color)" strokeWidth="1" fill="none" />
-              {/* Rays inside */}
-              <path d="M 50,50 L 50,10" stroke="var(--deco-color)" strokeWidth="2" />
-              <path d="M 50,50 L 28,19" stroke="var(--deco-color)" strokeWidth="1.5" />
-              <path d="M 50,50 L 72,19" stroke="var(--deco-color)" strokeWidth="1.5" />
-              <path d="M 50,50 L 15,32" stroke="var(--deco-color)" strokeWidth="1.5" />
-              <path d="M 50,50 L 85,32" stroke="var(--deco-color)" strokeWidth="1.5" />
-              {/* Rays leaves/droplets */}
-              <circle cx="50" cy="8" r="3" fill="var(--deco-color)" />
-              <circle cx="28" cy="17" r="2.5" fill="var(--deco-color)" />
-              <circle cx="72" cy="17" r="2.5" fill="var(--deco-color)" />
-              <circle cx="15" cy="30" r="2" fill="var(--deco-color)" />
-              <circle cx="85" cy="30" r="2" fill="var(--deco-color)" />
-            </g>
-            <pattern id="art-deco-pattern-services" width="100" height="100" patternUnits="userSpaceOnUse">
-              <use href="#deco-scale-services" x="0" y="0" />
-              <use href="#deco-scale-services" x="50" y="50" />
-              <use href="#deco-scale-services" x="-50" y="50" />
-              <use href="#deco-scale-services" x="50" y="-50" />
-              <use href="#deco-scale-services" x="-50" y="-50" />
+            <pattern id="grid-services" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--border-color)" strokeWidth="0.5" opacity="0.03" />
+            </pattern>
+            <pattern id="grid-large-services" width="200" height="200" patternUnits="userSpaceOnUse">
+              <rect width="200" height="200" fill="url(#grid-services)" />
+              <path d="M 200 0 L 0 0 0 200" fill="none" stroke="var(--border-color)" strokeWidth="1.5" opacity="0.07" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#art-deco-pattern-services)" />
+          <rect width="100%" height="100%" fill="url(#grid-large-services)" />
         </svg>
       </div>
 
       <div className="services-page-container">
         {/* Back Button */}
-        <button onClick={goBack} className="back-btn glass">
+        <button onClick={goBack} className="back-btn">
           <ArrowLeft size={16} />
           <span>Retour au Portfolio</span>
         </button>
@@ -302,7 +280,7 @@ export default function ServicesPage() {
 
         {/* Categories Tab Selector */}
         <div className="category-tabs-container">
-          <div className="category-tabs glass">
+          <div className="category-tabs">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -326,7 +304,7 @@ export default function ServicesPage() {
             {filteredPacks.map((pack) => (
               <div
                 key={pack.id}
-                className={`pricing-card glow-card glass ${pack.popular ? 'popular' : ''} ${pack.colorClass}`}
+                className={`pricing-card glow-card ${pack.popular ? 'popular' : ''} ${pack.colorClass}`}
               >
                 {pack.popular && (
                   <div className="popular-badge">
@@ -335,7 +313,7 @@ export default function ServicesPage() {
                 )}
 
                 <div className="pack-header">
-                  <div className="pack-icon-wrapper glass">
+                  <div className="pack-icon-wrapper">
                     {pack.icon}
                   </div>
                   <h2 className="pack-name">{pack.name}</h2>
@@ -365,7 +343,7 @@ export default function ServicesPage() {
                     <span className="tech-title">Technologies :</span>
                     <div className="pack-tech-tags">
                       {pack.technologies.map((tech, idx) => (
-                        <span key={idx} className="pack-tech-tag glass">
+                        <span key={idx} className="pack-tech-tag">
                           {tech}
                         </span>
                       ))}
@@ -378,7 +356,7 @@ export default function ServicesPage() {
 
                   <button 
                     onClick={() => selectPack(pack.name)}
-                    className={`select-pack-btn ${pack.popular ? 'popular-btn' : 'glass'}`}
+                    className={`select-pack-btn ${pack.popular ? 'popular-btn' : ''}`}
                   >
                     <span>Commander ce pack</span>
                     <Send size={14} />
@@ -390,7 +368,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Custom Project CTA */}
-        <div className="custom-project-cta glass">
+        <div className="custom-project-cta">
           <div className="cta-content">
             <h2>Besoin d'un projet sur-mesure ou d'une régie technique ?</h2>
             <p>

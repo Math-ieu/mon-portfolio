@@ -124,8 +124,8 @@ export default function Skills() {
               {/* Tags */}
               <div className="bento-tags">
                 {cat.tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="bento-tag glass">
-                    {tag}
+                  <span key={tIdx} className="bento-tag">
+                    [{tag}]
                   </span>
                 ))}
               </div>

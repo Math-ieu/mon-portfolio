@@ -1,33 +1,35 @@
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
   align-items: start;
 }
 
 .about-bio h3,
 .about-education h3 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 24px;
   color: var(--text-primary);
   font-family: var(--font-heading);
+  text-transform: uppercase;
 }
 
 .about-bio p {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin-bottom: 20px;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .about-bio strong {
   color: var(--color-accent);
+  font-family: var(--font-mono);
 }
 
 .about-stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 15px;
   margin-top: 30px;
 }
 
@@ -36,95 +38,100 @@
   align-items: center;
   gap: 15px;
   padding: 15px;
-  background: var(--bg-badge);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: var(--border-thin);
 }
 
 .stat-icon {
   color: var(--color-accent);
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
 .about-stat h4 {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 800;
   color: var(--text-primary);
 }
 
 .about-stat span {
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   color: var(--text-muted);
+  text-transform: uppercase;
 }
 
-/* Timeline */
+/* Timeline - Technical Register Style */
 .education-timeline {
   display: flex;
   flex-direction: column;
   gap: 25px;
   position: relative;
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
 .education-timeline::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 4px;
+  left: 6px;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-secondary) 100%);
-  border-radius: 1px;
+  background: var(--border-color);
 }
 
 .education-item {
   position: relative;
-  padding: 25px;
-  border-radius: var(--radius-md);
+  padding: 24px;
+  background: var(--bg-card);
+  border: var(--border-thick);
+  box-shadow: 3px 3px 0px var(--text-primary);
   transition: var(--transition-smooth);
 }
 
 .education-item:hover {
-  border-color: rgba(6, 182, 212, 0.2);
-  transform: translateX(5px);
+  border-color: var(--color-accent);
+  box-shadow: 5px 5px 0px var(--color-accent);
+  transform: translate(-2px, -2px);
 }
 
 .education-marker {
   position: absolute;
-  left: -28px;
-  top: 28px;
+  left: -27px;
+  top: 24px;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   background: var(--bg-primary);
-  border: 2px solid var(--color-accent);
+  border: var(--border-thick);
+  border-color: var(--color-accent);
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--color-accent);
   z-index: 2;
-  box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
 }
 
 .education-item:hover .education-marker {
   background: var(--color-accent);
   color: var(--bg-primary);
-  box-shadow: 0 0 15px var(--color-accent);
 }
 
 .education-header h4 {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 900;
   color: var(--text-primary);
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .education-header h5 {
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
   color: var(--color-secondary);
   margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
 .education-meta {
@@ -132,13 +139,14 @@
   flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
 .edu-meta-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
@@ -150,17 +158,19 @@
 }
 
 .education-details li {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   position: relative;
   padding-left: 15px;
 }
 
 .education-details li::before {
-  content: '→';
+  content: '>';
   position: absolute;
   left: 0;
   color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-weight: bold;
 }
 
 @media (max-width: 900px) {
@@ -176,3 +186,4 @@
     gap: 15px;
   }
 }
+
