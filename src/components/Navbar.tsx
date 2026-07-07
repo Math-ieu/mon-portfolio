@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, FileText, Sun, Moon } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './Navbar.css';
 
 const GithubIcon = ({ size = 20 }: { size?: number }) => (
@@ -126,24 +126,39 @@ export default function Navbar() {
   return (
     <nav className={`navbar glass ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-container">
-        <a href="#hero" className="navbar-logo" onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}>
+        <Link 
+          to="/" 
+          className="navbar-logo" 
+          onClick={(e) => { 
+            if (location.pathname === '/') {
+              e.preventDefault(); 
+              scrollTo('hero'); 
+            }
+          }}
+        >
           <span>math</span>dev.<span>consulting</span>
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="navbar-links">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.id}
-              href={`#${item.id}`}
+              to={item.id === 'services' ? '/services' : (item.id === 'hero' ? '/' : `/#${item.id}`)}
               className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
               onClick={(e) => {
-                e.preventDefault();
-                scrollTo(item.id);
+                if (item.id !== 'services' && location.pathname === '/') {
+                  e.preventDefault();
+                  scrollTo(item.id);
+                } else if (item.id === 'services' && location.pathname === '/services') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setIsOpen(false);
+                }
               }}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -197,17 +212,25 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div className={`mobile-menu glass ${isOpen ? 'open' : ''}`}>
         {navItems.map((item) => (
-          <a
+          <Link
             key={item.id}
-            href={`#${item.id}`}
+            to={item.id === 'services' ? '/services' : (item.id === 'hero' ? '/' : `/#${item.id}`)}
             className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
             onClick={(e) => {
-              e.preventDefault();
-              scrollTo(item.id);
+              if (item.id !== 'services' && location.pathname === '/') {
+                e.preventDefault();
+                scrollTo(item.id);
+              } else if (item.id === 'services' && location.pathname === '/services') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setIsOpen(false);
+              } else {
+                setIsOpen(false);
+              }
             }}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
         <div className="mobile-menu-socials">
           <a href="https://github.com/Math-ieu" target="_blank" rel="noopener noreferrer">

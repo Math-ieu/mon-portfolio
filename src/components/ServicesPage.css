@@ -28,6 +28,7 @@
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-primary);
+  text-decoration: none;
   cursor: pointer;
   margin-bottom: 40px;
   background: var(--bg-secondary);
@@ -357,6 +358,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
   cursor: pointer;
   border: var(--border-thick);
   color: var(--text-primary);
@@ -431,6 +433,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
   cursor: pointer;
   flex-shrink: 0;
   box-shadow: 4px 4px 0px var(--text-primary);

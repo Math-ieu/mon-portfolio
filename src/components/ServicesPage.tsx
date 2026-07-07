@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Cloud, Shield, Server, Check, ArrowLeft, Send, Database, Cpu, Brain, Smartphone } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './ServicesPage.css';
 
 interface PricingPack {
@@ -26,6 +26,42 @@ interface Category {
 export default function ServicesPage() {
   const [activeCategory, setActiveCategory] = useState<'cloud' | 'web' | 'ai' | 'mobile'>('web');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Services & Tarifs | Mathieu AKAKPO-DJAKPATA - Consultant Cloud & DevSecOps";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    const originalDesc = metaDesc ? metaDesc.getAttribute("content") : "";
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Découvrez mes offres de services professionnels : Cloud, DevSecOps, architectures Kubernetes, développement d'applications SaaS web/mobile et intégration d'IA.");
+    }
+
+    // Dynamic Canonical Link
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    const hadCanonical = !!canonical;
+    let originalCanonical = "";
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    } else {
+      originalCanonical = canonical.getAttribute('href') || "";
+    }
+    canonical.setAttribute('href', 'https://mathdev.consulting/services');
+
+    return () => {
+      document.title = "Mathieu AKAKPO-DJAKPATA | Ingénieur Cloud & DevSecOps";
+      if (metaDesc && originalDesc) {
+        metaDesc.setAttribute("content", originalDesc);
+      }
+      if (canonical) {
+        if (hadCanonical) {
+          canonical.setAttribute('href', originalCanonical || 'https://mathdev.consulting/');
+        } else {
+          canonical.remove();
+        }
+      }
+    };
+  }, []);
 
   const categories: Category[] = [
     { id: 'web', label: 'Développement Web' },
@@ -229,9 +265,6 @@ export default function ServicesPage() {
   // Filter packs by active category
   const filteredPacks = packs.filter(pack => pack.category === activeCategory);
 
-  const goBack = () => {
-    navigate('/');
-  };
 
   const selectPack = (packName: string) => {
     navigate('/#contact');
@@ -265,10 +298,10 @@ export default function ServicesPage() {
 
       <div className="services-page-container">
         {/* Back Button */}
-        <button onClick={goBack} className="back-btn">
+        <Link to="/" className="back-btn">
           <ArrowLeft size={16} />
           <span>Retour au Portfolio</span>
-        </button>
+        </Link>
 
         {/* Page Header */}
         <div className="services-page-header">
@@ -354,13 +387,17 @@ export default function ServicesPage() {
                     <span>Délai de livraison : <strong>{pack.deliveryTime}</strong></span>
                   </div>
 
-                  <button 
-                    onClick={() => selectPack(pack.name)}
+                  <Link 
+                    to="/#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      selectPack(pack.name);
+                    }}
                     className={`select-pack-btn ${pack.popular ? 'popular-btn' : ''}`}
                   >
                     <span>Commander ce pack</span>
                     <Send size={14} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -375,10 +412,17 @@ export default function ServicesPage() {
               Votre infrastructure a des contraintes spécifiques ou vous souhaitez intégrer un ingénieur DevSecOps / Cloud compétent directement dans vos équipes ? Discutons-en !
             </p>
           </div>
-          <button onClick={() => selectPack('Sur-mesure / Régie')} className="cta-btn">
+          <Link 
+            to="/#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              selectPack('Sur-mesure / Régie');
+            }}
+            className="cta-btn"
+          >
             <span>Me contacter</span>
             <Send size={16} />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
