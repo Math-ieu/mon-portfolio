@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect, lazy, Suspense } from 'react';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import ServicesPage from './components/ServicesPage';
 import Skills from './components/Skills';
 import Experiences from './components/Experiences';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import './App.css';
+
+const ServicesPage = lazy(() => import('./components/ServicesPage'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 
 export default function App() {
   const location = useLocation();
@@ -41,6 +43,11 @@ export default function App() {
 
   return (
     <div className="app-container">
+      {/* Skip to content link for a11y */}
+      <a href="#main-content" className="skip-to-content">
+        [SYS_SKIP_TO_CONTENT]
+      </a>
+
       {/* Noise and Scanline overlays for mechanical/CRT feel */}
       <div className="noise-overlay" />
       <div className="crt-scanlines" />
@@ -64,38 +71,76 @@ export default function App() {
       {/* Navigation bar */}
       <Navbar />
 
-      <Routes>
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/" element={
-          <>
-            {/* Hero section */}
-            <Hero />
+      <main id="main-content">
+        <Routes>
+          <Route path="/privacy-policy" element={
+            <Suspense fallback={
+              <div className="loading-fallback-container" style={{
+                height: '70vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontFamily: 'var(--font-mono)',
+                color: 'var(--color-secondary)'
+              }}>
+                [SYS_LOADING_PRIVACY_ROUTING...]
+              </div>
+            }>
+              <PrivacyPolicy />
+            </Suspense>
+          } />
+          <Route path="/services" element={
+            <Suspense fallback={
+              <div className="loading-fallback-container" style={{
+                height: '70vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontFamily: 'var(--font-mono)',
+                color: 'var(--color-secondary)'
+              }}>
+                [SYS_LOADING_SERVICES_ROUTING...]
+              </div>
+            }>
+              <ServicesPage />
+            </Suspense>
+          } />
+          <Route path="/" element={
+            <>
+              {/* Hero section */}
+              <Hero />
 
-            {/* About Section */}
-            <About />
+              {/* About Section */}
+              <About />
 
-            {/* Skills Section */}
-            <Skills />
+              {/* Skills Section */}
+              <Skills />
 
-            {/* Experiences Section */}
-            <Experiences />
+              {/* Experiences Section */}
+              <Experiences />
 
-            {/* Projects Section */}
-            <Projects />
+              {/* Projects Section */}
+              <Projects />
 
-            {/* Certifications Section */}
-            <Certifications />
+              {/* Certifications Section */}
+              <Certifications />
 
-            {/* Contact Section */}
-            <Contact />
-          </>
-        } />
-      </Routes>
+              {/* Contact Section */}
+              <Contact />
+            </>
+          } />
+        </Routes>
+      </main>
 
       {/* Professional Footer */}
       <footer className="footer" style={{ borderTop: 'var(--border-thin)', padding: '30px 20px', textAlign: 'center', background: 'var(--bg-secondary)', position: 'relative', zIndex: 10 }}>
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>
           &copy; {new Date().getFullYear()} MATHIEU AKAKPO-DJAKPATA // SYSTEM_REV: 3.5.0 // ALL RIGHTS RESERVED.
+        </p>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '10px' }}>
+          <Link to="/privacy-policy" className="footer-link" style={{ color: 'var(--text-muted)', textDecoration: 'underline', transition: 'color var(--transition-smooth)' }}>
+            [POLITIQUE_DE_CONFIDENTIALITE]
+          </Link>
         </p>
       </footer>
 
