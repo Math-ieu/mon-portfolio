@@ -1,34 +1,29 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Allow only POST method
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-
-  const { name, email, subject, message } = req.body;
-
-  // Basic validation
-  if (!name || !email || !subject || !message) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  // Retrieve Resend API Key from Environment Variables
-  const resendApiKey = process.env.RESEND_API;
-  if (!resendApiKey) {
-    console.error('RESEND_API key is not configured in environment variables');
-    return res.status(500).json({ error: 'Server configuration error' });
-  }
-
-  // Initialize Resend SDK
-  const resend = new Resend(resendApiKey);
-
-  // Standard onboarding address or verified domain
-  const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-  const contactReceiverEmail = 'mathieuakakpodjakpata@gmail.com';
-
+export async function POST(request: Request) {
   try {
+    const { name, email, subject, message } = await request.json();
+
+    // Basic validation
+    if (!name || !email || !subject || !message) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    // Retrieve Resend API Key from Environment Variables
+    const resendApiKey = process.env.RESEND_API;
+    if (!resendApiKey) {
+      console.error('RESEND_API key is not configured in environment variables');
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    }
+
+    // Initialize Resend SDK
+    const resend = new Resend(resendApiKey);
+
+    // Standard onboarding address or verified domain
+    const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    const contactReceiverEmail = 'mathieuakakpodjakpata@gmail.com';
+
     // 1. Send email to site owner (Mathieu)
     const ownerEmail = await resend.emails.send({
       from: resendFromEmail,
@@ -78,9 +73,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       console.warn('Error occurred while attempting to send visitor confirmation email:', confError);
     }
 
-    return res.status(200).json({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('API Contact route error:', error);
-    return res.status(500).json({ error: error.message || 'Internal Server Error' });
+    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }

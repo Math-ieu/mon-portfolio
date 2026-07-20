@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useMemo } from 'react';
 import { ExternalLink, Star, GitFork, Search, FolderGit2, Calendar } from 'lucide-react';
 import rawProjects from '../data/github_projects.json';

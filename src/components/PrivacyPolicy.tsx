@@ -1,14 +1,8 @@
 import { Shield, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import Link from 'next/link';
 import './PrivacyPolicy.css';
 
 export default function PrivacyPolicy() {
-  useEffect(() => {
-    document.title = "Politique de Confidentialité | Mathieu AKAKPO-DJAKPATA";
-    window.scrollTo({ top: 0 });
-  }, []);
-
   return (
     <div className="privacy-section">
       <div className="privacy-container">
@@ -72,7 +66,7 @@ export default function PrivacyPolicy() {
             Pour exercer l'un de ces droits, veuillez adresser votre demande directement par email à : <strong>mathieu@mathdev.consulting</strong>.
           </p>
 
-          <Link to="/" className="back-btn">
+          <Link href="/" className="back-btn">
             <ArrowLeft size={14} style={{ marginRight: '8px' }} />
             <span>[RETOUR_ACCUEIL]</span>
           </Link>

@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+'use client';
+
+import { useState } from 'react';
 import { Cloud, Shield, Server, Check, ArrowLeft, Send, Database, Cpu, Brain, Smartphone } from 'lucide-react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import './ServicesPage.css';
 
 interface PricingPack {
@@ -25,76 +28,7 @@ interface Category {
 
 export default function ServicesPage() {
   const [activeCategory, setActiveCategory] = useState<'cloud' | 'web' | 'ai' | 'mobile'>('web');
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    document.title = "Services & Tarifs | Mathieu AKAKPO-DJAKPATA - Consultant Cloud & DevSecOps";
-    
-    // Select elements
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    const twUrl = document.querySelector('meta[property="twitter:url"]');
-    const twTitle = document.querySelector('meta[property="twitter:title"]');
-    const twDesc = document.querySelector('meta[property="twitter:description"]');
-
-    // Save originals
-    const originalDesc = metaDesc?.getAttribute("content") || "";
-    const originalOgUrl = ogUrl?.getAttribute("content") || "";
-    const originalOgTitle = ogTitle?.getAttribute("content") || "";
-    const originalOgDesc = ogDesc?.getAttribute("content") || "";
-    const originalTwUrl = twUrl?.getAttribute("content") || "";
-    const originalTwTitle = twTitle?.getAttribute("content") || "";
-    const originalTwDesc = twDesc?.getAttribute("content") || "";
-
-    const servicesTitle = "Services & Tarifs | Mathieu AKAKPO-DJAKPATA - Consultant Cloud & DevSecOps";
-    const servicesDesc = "Découvrez mes offres de services professionnels : Cloud, DevSecOps, architectures Kubernetes, développement d'applications SaaS web/mobile et intégration d'IA.";
-    const servicesUrl = "https://mathdev.consulting/services";
-
-    // Set new values
-    metaDesc?.setAttribute("content", servicesDesc);
-    ogUrl?.setAttribute("content", servicesUrl);
-    ogTitle?.setAttribute("content", servicesTitle);
-    ogDesc?.setAttribute("content", servicesDesc);
-    twUrl?.setAttribute("content", servicesUrl);
-    twTitle?.setAttribute("content", servicesTitle);
-    twDesc?.setAttribute("content", servicesDesc);
-
-    // Dynamic Canonical Link
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    const hadCanonical = !!canonical;
-    let originalCanonical = "";
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    } else {
-      originalCanonical = canonical.getAttribute('href') || "";
-    }
-    canonical.setAttribute('href', servicesUrl);
-
-    return () => {
-      document.title = "Mathieu AKAKPO-DJAKPATA | Ingénieur Cloud & DevSecOps";
-      
-      // Restore original tags
-      if (metaDesc) metaDesc.setAttribute("content", originalDesc);
-      if (ogUrl) ogUrl.setAttribute("content", originalOgUrl);
-      if (ogTitle) ogTitle.setAttribute("content", originalOgTitle);
-      if (ogDesc) ogDesc.setAttribute("content", originalOgDesc);
-      if (twUrl) twUrl.setAttribute("content", originalTwUrl);
-      if (twTitle) twTitle.setAttribute("content", originalTwTitle);
-      if (twDesc) twDesc.setAttribute("content", originalTwDesc);
-
-      if (canonical) {
-        if (hadCanonical) {
-          canonical.setAttribute('href', originalCanonical || 'https://mathdev.consulting/');
-        } else {
-          canonical.remove();
-        }
-      }
-    };
-  }, []);
+  const router = useRouter();
 
   const categories: Category[] = [
     { id: 'web', label: 'Développement Web' },
@@ -300,7 +234,7 @@ export default function ServicesPage() {
 
 
   const selectPack = (packName: string) => {
-    navigate('/#contact');
+    router.push('/#contact');
     setTimeout(() => {
       const messageTextarea = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
       if (messageTextarea) {
@@ -331,7 +265,7 @@ export default function ServicesPage() {
 
       <div className="services-page-container">
         {/* Back Button */}
-        <Link to="/" className="back-btn">
+        <Link href="/" className="back-btn">
           <ArrowLeft size={16} />
           <span>Retour au Portfolio</span>
         </Link>
@@ -421,7 +355,7 @@ export default function ServicesPage() {
                   </div>
 
                   <Link 
-                    to="/#contact"
+                    href="/#contact"
                     onClick={(e) => {
                       e.preventDefault();
                       selectPack(pack.name);
@@ -446,7 +380,7 @@ export default function ServicesPage() {
             </p>
           </div>
           <Link 
-            to="/#contact"
+            href="/#contact"
             onClick={(e) => {
               e.preventDefault();
               selectPack('Sur-mesure / Régie');

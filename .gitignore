@@ -45,3 +45,5 @@ Thumbs.db
 # Local raw assets / private resume source directory
 CV/
 package-lock.json
+.env.local
+.next/*

@@ -1,6 +1,9 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { Menu, X, FileText, Sun, Moon } from 'lucide-react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import './Navbar.css';
 
 const GithubIcon = ({ size = 20 }: { size?: number }) => (
@@ -22,13 +25,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Synchronise state on initial mount
   useEffect(() => {
-    const activeTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'dark';
+    const activeTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'light';
     setTheme(activeTheme);
   }, []);
 
@@ -55,23 +58,23 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    if (location.pathname === '/services') {
+    if (pathname === '/services') {
       setActiveSection('services');
     } else {
-      const hash = location.hash.replace('#', '');
+      const hash = window.location.hash.replace('#', '');
       if (hash) {
         setActiveSection(hash);
       } else {
         setActiveSection('hero');
       }
     }
-  }, [location]);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      if (location.pathname === '/services') {
+      if (pathname === '/services') {
         return;
       }
 
@@ -92,18 +95,18 @@ export default function Navbar() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [location.pathname]);
+  }, [pathname]);
 
   const scrollTo = (id: string) => {
     setIsOpen(false);
 
     if (id === 'services') {
-      navigate('/services');
+      router.push('/services');
       return;
     }
 
-    if (location.pathname === '/services') {
-      navigate(`/#${id}`);
+    if (pathname === '/services') {
+      router.push(`/#${id}`);
       return;
     }
 
@@ -119,7 +122,7 @@ export default function Navbar() {
         top: offsetPosition,
         behavior: 'smooth'
       });
-      navigate(`/#${id}`, { replace: true });
+      router.replace(`/#${id}`);
     }
   };
 
@@ -127,10 +130,10 @@ export default function Navbar() {
     <nav className={`navbar glass ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-container">
         <Link 
-          to="/" 
+          href="/" 
           className="navbar-logo" 
           onClick={(e) => { 
-            if (location.pathname === '/') {
+            if (pathname === '/') {
               e.preventDefault(); 
               scrollTo('hero'); 
             }
@@ -144,13 +147,13 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link
               key={item.id}
-              to={item.id === 'services' ? '/services' : (item.id === 'hero' ? '/' : `/#${item.id}`)}
+              href={item.id === 'services' ? '/services' : (item.id === 'hero' ? '/' : `/#${item.id}`)}
               className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
               onClick={(e) => {
-                if (item.id !== 'services' && location.pathname === '/') {
+                if (item.id !== 'services' && pathname === '/') {
                   e.preventDefault();
                   scrollTo(item.id);
-                } else if (item.id === 'services' && location.pathname === '/services') {
+                } else if (item.id === 'services' && pathname === '/services') {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setIsOpen(false);
@@ -214,13 +217,13 @@ export default function Navbar() {
         {navItems.map((item) => (
           <Link
             key={item.id}
-            to={item.id === 'services' ? '/services' : (item.id === 'hero' ? '/' : `/#${item.id}`)}
+            href={item.id === 'services' ? '/services' : (item.id === 'hero' ? '/' : `/#${item.id}`)}
             className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
             onClick={(e) => {
-              if (item.id !== 'services' && location.pathname === '/') {
+              if (item.id !== 'services' && pathname === '/') {
                 e.preventDefault();
                 scrollTo(item.id);
-              } else if (item.id === 'services' && location.pathname === '/services') {
+              } else if (item.id === 'services' && pathname === '/services') {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 setIsOpen(false);

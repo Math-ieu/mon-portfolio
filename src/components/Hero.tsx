@@ -1,6 +1,8 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { Shield, Server, ArrowRight, Download, Mail, ChevronDown, Briefcase } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import './Hero.css';
 
 const GithubIcon = ({ size = 18 }: { size?: number }) => (
@@ -87,7 +89,7 @@ export default function Hero() {
                 <span>Mes projets</span>
                 <ArrowRight size={14} />
               </a>
-              <Link to="/services" className="cta-secondary">
+              <Link href="/services" className="cta-secondary">
                 <Briefcase size={14} />
                 <span>Mes Services</span>
               </Link>

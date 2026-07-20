@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useMemo, useEffect } from 'react';
 import { ExternalLink, Award, ShieldCheck, Database, Server, X } from 'lucide-react';
 import './Certifications.css';

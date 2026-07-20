@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertTriangle } from 'lucide-react';
 import './Contact.css';
