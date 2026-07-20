@@ -8,9 +8,6 @@ import "../App.css";
 export const metadata: Metadata = {
   title: "Mathieu AKAKPO-DJAKPATA | Ingénieur Cloud & DevSecOps",
   description: "Ingénieur double diplômé en Cloud & Cyberdéfense, spécialisé dans l'automatisation cloud (Infrastructure as Code), les pipelines CI/CD sécurisés (DevSecOps) et la sécurité des infrastructures.",
-  icons: {
-    icon: "/favicon.svg",
-  },
   metadataBase: new URL("https://mathdev.consulting"),
 };
 
