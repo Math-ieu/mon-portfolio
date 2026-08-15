@@ -1,0 +1,304 @@
+/* ==========================================================================
+   CV PREVIEW POP-UP MODAL (TACTICAL / BRUTALIST UI)
+   ========================================================================== */
+
+.cv-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: cvFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cv-modal-container {
+  border: var(--border-thick);
+  background: var(--bg-primary);
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 960px;
+  height: 90vh;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: cvScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme='light'] .cv-modal-container {
+  box-shadow: 10px 10px 0px var(--border-color);
+}
+
+/* Modal Header */
+.cv-modal-header {
+  padding: 12px 20px;
+  border-bottom: var(--border-thick);
+  background: var(--bg-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.cv-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cv-modal-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border: var(--border-thin);
+  flex-shrink: 0;
+}
+
+.cv-modal-text-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cv-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cv-modal-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Header Actions */
+.cv-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cv-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: var(--border-thin);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.cv-action-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px var(--color-accent);
+}
+
+.cv-download-btn {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+}
+
+.cv-download-btn:hover {
+  background: #E61919;
+  color: #FFFFFF;
+  border-color: #E61919;
+  box-shadow: 2px 2px 0px var(--text-primary);
+}
+
+.cv-close-btn {
+  padding: 8px 10px;
+}
+
+.cv-close-btn:hover {
+  background: var(--color-danger);
+  color: #FFFFFF;
+  border-color: var(--color-danger);
+  box-shadow: 2px 2px 0px var(--text-primary);
+}
+
+/* Modal Body / PDF viewer */
+.cv-modal-body {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.cv-modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #FFFFFF;
+  display: block;
+}
+
+.cv-modal-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cv-spinner {
+  animation: cvSpin 1s linear infinite;
+  color: var(--color-accent);
+}
+
+.cv-modal-fallback {
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+}
+
+/* Modal Footer */
+.cv-modal-footer {
+  padding: 10px 20px;
+  background: var(--bg-secondary);
+  border-top: var(--border-thick);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.cv-modal-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-status-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--color-success);
+  border-radius: 50% !important;
+  display: inline-block;
+  box-shadow: 0 0 6px var(--color-success);
+}
+
+.cv-hint-tag {
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border: var(--border-thin);
+}
+
+/* Animations */
+@keyframes cvFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cvScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes cvSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 768px) {
+  .cv-modal-overlay {
+    padding: 10px;
+  }
+
+  .cv-modal-container {
+    height: 94vh;
+    max-height: none;
+  }
+
+  .cv-modal-header {
+    padding: 10px 14px;
+  }
+
+  .cv-action-text {
+    display: none;
+  }
+
+  .cv-action-btn {
+    padding: 8px 10px;
+  }
+
+  .cv-modal-title {
+    font-size: 0.9rem;
+  }
+
+  .cv-modal-subtitle {
+    font-size: 0.6rem;
+  }
+
+  .cv-modal-footer {
+    padding: 8px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Shield, Server, ArrowRight, Download, Mail, ChevronDown, Briefcase } from 'lucide-react';
+import { Shield, Server, ArrowRight, Download, Mail, ChevronDown, Briefcase, FileText } from 'lucide-react';
 import Link from 'next/link';
+import { openCvModal } from './CvModal';
 import './Hero.css';
 
 const GithubIcon = ({ size = 18 }: { size?: number }) => (
@@ -93,10 +94,15 @@ export default function Hero() {
                 <Briefcase size={14} />
                 <span>Mes Services</span>
               </Link>
-              <a href="/cv-mathieu.pdf" className="cta-secondary" target="_blank" rel="noopener noreferrer">
-                <Download size={14} />
-                <span>CV.pdf</span>
-              </a>
+              <button 
+                type="button" 
+                onClick={openCvModal} 
+                className="cta-secondary"
+                aria-label="Aperçu du CV"
+              >
+                <FileText size={14} />
+                <span>Mon CV (PDF)</span>
+              </button>
             </div>
 
             {/* Social Links */}

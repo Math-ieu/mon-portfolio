@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, FileText, Sun, Moon } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import CvModal from './CvModal';
 import './Navbar.css';
 
 const GithubIcon = ({ size = 20 }: { size?: number }) => (
@@ -23,6 +24,7 @@ const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCvOpen, setIsCvOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -185,14 +187,15 @@ export default function Navbar() {
           >
             <LinkedinIcon size={20} />
           </a>
-          <a
-            href="/cv-mathieu.pdf"
-            download="cv-Mathieu_AKAKPO-DJAKPATA.pdf"
+          <button
+            type="button"
+            onClick={() => setIsCvOpen(true)}
             className="cv-button"
+            aria-label="Aperçu du CV"
           >
             <FileText size={16} />
             <span>Mon CV</span>
-          </a>
+          </button>
 
           <button
             onClick={toggleTheme}
@@ -235,6 +238,18 @@ export default function Navbar() {
             {item.label}
           </Link>
         ))}
+        <button
+          type="button"
+          className="cv-button mobile-cv-button"
+          onClick={() => {
+            setIsOpen(false);
+            setIsCvOpen(true);
+          }}
+          aria-label="Aperçu du CV"
+        >
+          <FileText size={18} />
+          <span>Mon CV (Aperçu)</span>
+        </button>
         <div className="mobile-menu-socials">
           <a href="https://github.com/Math-ieu" target="_blank" rel="noopener noreferrer">
             <GithubIcon size={24} />
@@ -244,6 +259,9 @@ export default function Navbar() {
           </a>
         </div>
       </div>
+
+      {/* CV Preview Pop-up Modal */}
+      <CvModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} />
     </nav>
   );
 }

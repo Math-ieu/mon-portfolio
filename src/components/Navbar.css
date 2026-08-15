@@ -113,12 +113,21 @@
   font-weight: 700;
   text-transform: uppercase;
   box-shadow: 3px 3px 0px var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
 }
 
 .cv-button:hover {
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0px var(--color-accent);
   border-color: var(--color-accent);
+}
+
+.mobile-cv-button {
+  margin-top: 10px;
+  width: auto;
+  font-size: 0.9rem;
+  padding: 10px 20px;
 }
 
 .menu-toggle {
@@ -250,10 +259,10 @@
     font-size: 1.1rem;
     padding: 3px 6px;
   }
-  .cv-button span {
+  .navbar-actions .cv-button span {
     display: none;
   }
-  .cv-button {
+  .navbar-actions .cv-button {
     padding: 8px 10px;
   }
   .theme-toggle-btn {
