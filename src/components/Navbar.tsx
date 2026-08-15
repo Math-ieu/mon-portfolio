@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, FileText, Sun, Moon } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import CvModal from './CvModal';
+import CvModal, { openCvModal } from './CvModal';
 import './Navbar.css';
 
 const GithubIcon = ({ size = 20 }: { size?: number }) => (
@@ -24,7 +24,6 @@ const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isCvOpen, setIsCvOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -189,7 +188,7 @@ export default function Navbar() {
           </a>
           <button
             type="button"
-            onClick={() => setIsCvOpen(true)}
+            onClick={openCvModal}
             className="cv-button"
             aria-label="Aperçu du CV"
           >
@@ -243,7 +242,7 @@ export default function Navbar() {
           className="cv-button mobile-cv-button"
           onClick={() => {
             setIsOpen(false);
-            setIsCvOpen(true);
+            openCvModal();
           }}
           aria-label="Aperçu du CV"
         >
@@ -261,7 +260,7 @@ export default function Navbar() {
       </div>
 
       {/* CV Preview Pop-up Modal */}
-      <CvModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} />
+      <CvModal />
     </nav>
   );
 }

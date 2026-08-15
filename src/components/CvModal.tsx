@@ -10,6 +10,12 @@ export const openCvModal = () => {
   }
 };
 
+export const closeCvModal = () => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('close-cv-modal'));
+  }
+};
+
 interface CvModalProps {
   isOpen?: boolean;
   onClose?: () => void;
@@ -26,30 +32,34 @@ export default function CvModal({
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Controlled or uncontrolled (via CustomEvent)
-  const isControlled = controlledIsOpen !== undefined;
-  const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+  // Both controlled prop and custom event can activate the modal
+  const isOpen = (controlledIsOpen ?? false) || internalIsOpen;
 
   const handleClose = useCallback(() => {
-    if (isControlled && controlledOnClose) {
+    setInternalIsOpen(false);
+    if (controlledOnClose) {
       controlledOnClose();
-    } else {
-      setInternalIsOpen(false);
     }
-  }, [isControlled, controlledOnClose]);
+  }, [controlledOnClose]);
 
-  // Listen for global custom event
+  // Listen for global custom events
   useEffect(() => {
     const handleOpenEvent = () => {
       setInternalIsOpen(true);
       setIsLoading(true);
     };
 
+    const handleCloseEvent = () => {
+      handleClose();
+    };
+
     window.addEventListener('open-cv-modal', handleOpenEvent);
+    window.addEventListener('close-cv-modal', handleCloseEvent);
     return () => {
       window.removeEventListener('open-cv-modal', handleOpenEvent);
+      window.removeEventListener('close-cv-modal', handleCloseEvent);
     };
-  }, []);
+  }, [handleClose]);
 
   // Keyboard navigation (Escape key) and body scroll lock
   useEffect(() => {
